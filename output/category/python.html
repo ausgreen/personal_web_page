@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>A Pelican Blog - Python</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">A Pelican Blog </a></h1>
+                <nav><ul>
+                    <li><a href="/category/about.html">About</a></li>
+                    <li><a href="/category/dev.html">dev</a></li>
+                    <li><a href="/category/pages.html">pages</a></li>
+                    <li class="active"><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/stuff.html">stuff</a></li>
+                    <li><a href="/category/template.html">Template</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/list-comprehensions.html">List Comprehensions</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-11-06T10:00:00+00:00">
+                Published: Mon 06 November 2017
+        </abbr>
+
+<p>In <a href="/category/python.html">Python</a>.</p>
+
+</footer><!-- /.post-info --><h3>List Comprehensions</h3>
+<p><img alt="stranger_things_bruteforce_code" src="images/bob_newby_code.png"></p>
+<p>List comprehensions allow a Python programmer to build lists in a natural and clear manner.
+Instead of describing the intricacies of list comprehensions, lets look at a few examples.</p>
+<h5>1. Print a list of the powers of two up to the tenth power:</h5>
+<h6>Here is the output we are hoping to obtain:</h6>
+<div class="highlight"><pre><span></span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+</pre></div>
+
+
+<h6>Standard:</h6>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">power</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<h6>List Comprehension</h6>
+<div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">power</span> <span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In this case it is easy to see the benefit of list comprehensions.  The list comprehension </p>
+<ul>
+<li>builds the list more concisely than the for loop  </li>
+<li>is more explicit (once you learn how to read list comprehensions)</li>
+<li>is faster than the for loop (discussion for another time)</li>
+</ul>
+<p>Let's take a look at how to read that list comprehension in plain English.</p>
+<p><img alt="list_comprehension_0.png" src="images/list_comprehension_0.png"></p>
+<h6></h6>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/python-development-environment.html" rel="bookmark"
+                           title="Permalink to Python development environment">Python development environment</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-11-05T12:00:00+00:00">
+                Published: Sun 05 November 2017
+        </abbr>
+
+<p>In <a href="/category/python.html">Python</a>.</p>
+
+</footer><!-- /.post-info -->                <p>I haven't been programming in python for very long.  It has a lot of features that immediately drew me in over other languages.<br>
+Most importantly, it enabled me to get things done.  However, when I started to use 3rd party packages, my project dependencies began to pollute my default python …</p>
+                <a class="readmore" href="/python-development-environment.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="/theme/font-awesome/css/font-awesome.min.css">
+
+
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+
+<meta name="author" content="Austin Green" />
+<meta name="description" content="List Comprehensions List comprehensions allow a Python programmer to build lists in a natural and clear manner. Instead of describing the intricacies of list comprehensions, lets look at a few examples. 1. Print a list of the powers of two up to the tenth power: Here is the output we …" />
+<meta name="keywords" content="">
+
+<meta property="og:site_name" content="Austin Green's Blog"/>
+<meta property="og:title" content="Test Jupyter Notebook"/>
+<meta property="og:description" content="List Comprehensions List comprehensions allow a Python programmer to build lists in a natural and clear manner. Instead of describing the intricacies of list comprehensions, lets look at a few examples. 1. Print a list of the powers of two up to the tenth power: Here is the output we …"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/test-jupyter-notebook.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-11-06 15:00:00-06:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/austin-green.html">
+<meta property="article:section" content="Template"/>
+<meta property="og:image" content="">
+
+  <title>Austin Green's Blog &ndash; Test Jupyter Notebook</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="">
+        <img src="/theme/img/profile.png" alt="" title="">
+      </a>
+      <h1><a href=""></a></h1>
+
+
+      <nav>
+        <ul class="list">
+          <li><a href="/pages/about-austin.html#about-austin">About Austin</a></li>
+
+          <li><a href="http://getpelican.com/" target="_blank">Pelican</a></li>
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-GitHub" href="https://github.com/ausgreen" target="_blank"><i class="fa fa-GitHub"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+      
+    <h1 id="test-jupyter-notebook">Test Jupyter Notebook</h1>
+    <p>
+          Posted on Mon 06 November 2017 in <a href="/category/template.html">Template</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <h1>List Comprehensions</h1>
+<p>List comprehensions allow a Python programmer to build lists in a natural and clear manner.</p>
+<p>Instead of describing the intricacies of list comprehensions, lets look at a few examples.</p>
+<h3>1. Print a list of the powers of two up to the tenth power:</h3>
+<h6>Here is the output we are hoping to obtain</h6>
+<p>[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]</p>
+<div class="highlight"><pre><span></span><span class="c1"># Standard code</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">power</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># List Comprehension</span>
+<span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="o">**</span><span class="n">power</span> <span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+</pre></div>
+
+
+<p>If you have never seen a list comprehension before, your mind might be a little scattered.  Let's learn how to read that line of code in plain English.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+    <div class="addthis_relatedposts_inline">
+
+
+</article>
+
+    <footer>
+<p>&copy;  </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Austin Green's Blog ",
+  "url" : "",
+  "image": "",
+  "description": ""
+}
+</script>
+
+</body>
+</html>
