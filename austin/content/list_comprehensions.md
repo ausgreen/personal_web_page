@@ -4,7 +4,7 @@ Category: Python
 
 
 ###List Comprehensions
-![stranger_things_bruteforce_code](images/bob_newby_code.png)
+![stranger_things_bruteforce_code](https://image.ibb.co/fBroQ6/bob_newby_code.png)
 
 List comprehensions allow a Python programmer to build lists in a natural and clear manner.
 Instead of describing the intricacies of list comprehensions, lets look at a few examples.
@@ -35,9 +35,9 @@ In this case it is easy to see the benefit of list comprehensions.  The list com
 - is more explicit (once you learn how to read list comprehensions)
 - is faster than the for loop (discussion for another time)
 
-Let's take a look at how to read that list comprehension in plain English.
+Here is how I would read that list comprehension in plain English.
 
-![list_comprehension_0.png](images/list_comprehension_0.png)
+![list_comprehension_0.png](https://image.ibb.co/jD3Dsm/list_comprehension_0.png)
 
 ###### 
 
