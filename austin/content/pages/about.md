@@ -2,6 +2,6 @@ Title: About Austin
 Date: 2017-11-03 10:00
 Category: About
 
-Austin is a perpetual student in Birmingham Alabama.  He received a BSEE from UAB in 2013.  
+I'm just an average dude raised in the great state of Indiana.  
 
-More to come some other time.
+I live in Birmingham now, but 

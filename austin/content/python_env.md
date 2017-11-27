@@ -1,5 +1,5 @@
 Title: Python development environment
-Date: 2017-11-05 12:00
+Date: 2017-11-24 12:00
 Category: Python
 
 I haven't been programming in python for very long.  It has a lot of features that immediately drew me in over other languages.  
