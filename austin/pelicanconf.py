@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = 'Austin Green'
-SITENAME = "Austin Green's Blog"
+SITENAME = "Austin Green"
 SITEURL = ''
 SITELOGO = ''
 FAVICON = '/images/favicon.ico'
@@ -24,13 +24,17 @@ GITHUB_URL = 'https://github.com/ausgreen'
 
 THEME = "./themes/Flex"
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),)
+LINKS = (('Home','/'),)
 
 # Social widget
-SOCIAL = (('GitHub', 'https://github.com/ausgreen'),)
+# Note, I added another variable to the theme so images could be used
+# logo images are to be placed in 'themes/<theme>/static/img'
+SOCIAL = (('GitHub', 'https://github.com/ausgreen', "github_32_light.png"),
+          ('LinkedIn', 'https://www.linkedin.com/in/austin-green-b2aba16a/', "linked_in_28_light.png"))
 
 DEFAULT_PAGINATION = False
 DISPLAY_PAGES_ON_MENU = True
+DELETE_OUTPUT_DIRECTORY = True
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True

@@ -2,10 +2,12 @@ Title: About Austin
 Date: 2017-11-03 10:00
 Category: About
 
-I'm just an average dude raised in the great state of Indiana.  
+I'm just an average dude raised in the great state of Indiana.  Most of my childhood was spent building legos, eating macaroni and cheese, kicking a soccer ball, and shooting a basketball into a hoop.
 
-In 2013 I graduated from UAB with a BSEE and spent the last four years building a broad set of skills in embedded electronics development.  
+Lots of things interested me as I began learning how the world operated.  The piano lessons my mom made my brother and I take, weren't one of them – I can't speak for my brother, but the piano left me more than disinterested.
 
-Somehow my professional path crossed with python development and I have expanded my educational interests to statistics and data science.
+However, the early work that I put in on the piano started my path to music, and from music to audio engineering, and from audio engineering to a BSEE from UAB in 2013.
 
-However, my favorite thing in the world (besides my wife) is to watch UAB basketball win.  Go blazers!
+I have more in store for my future, lets discover some of it together.
+
+###### PS - my wife rules (she made me add this)
