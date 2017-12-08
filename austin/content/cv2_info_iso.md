@@ -97,7 +97,7 @@ the color-isolated images shows that my color regions are too broad and should
 probably be defined into more precise categories other than just *Cyan* and *Magenta*.
 
 #####Up Next
-Next time I will attmpt to do some other cool stuff with this image:
+Next time I will attempt to do some other cool stuff with this image:
 
  - Identify centers of mass and coordinates of each region
  - Determine percentages of each color by area 
