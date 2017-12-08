@@ -1,6 +1,7 @@
 Title: Habits and Learning
 Date: 2017-11-09 10:00
 Category: life
+Status: draft
 
 Learning to program is a difficult thing.  It is obfuscated, dense, and often unintuitive.  Looking at what others have built is inspiring, but often the tools used to convey the essential ideas for building those projects are excercises in tedium.  
 

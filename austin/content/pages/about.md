@@ -1,6 +1,7 @@
 Title: About Austin
 Date: 2017-11-03 10:00
 Category: About
+Status: published
 
 I'm just an average dude raised in the great state of Indiana.  Most of my childhood was spent building legos, eating macaroni and cheese, kicking a soccer ball, and shooting a basketball into a hoop.
 

@@ -22,6 +22,10 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 GITHUB_URL = 'https://github.com/ausgreen'
 
+DEFAULT_METADATA = {
+    'status': 'draft',
+}
+
 THEME = "./themes/Flex"
 # Blogroll
 LINKS = (('Home','/'),)
