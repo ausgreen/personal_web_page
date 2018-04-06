@@ -34,7 +34,7 @@ LINKS = (('Home','/'),)
 # Note, I added another variable to the theme so images could be used
 # logo images are to be placed in 'themes/<theme>/static/img'
 SOCIAL = (('GitHub', 'https://github.com/ausgreen', "github_32_light.png"),
-          ('LinkedIn', 'https://www.linkedin.com/in/austin-green-b2aba16a/', "linked_in_28_light.png"))
+          ('LinkedIn', 'https://www.linkedin.com/in/austin-green-b2aba16a/', "linked_in_28.png"))
 
 DEFAULT_PAGINATION = False
 DISPLAY_PAGES_ON_MENU = True
