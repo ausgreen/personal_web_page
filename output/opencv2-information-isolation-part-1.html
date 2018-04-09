@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>OpenCV2 information isolation part 1</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">A Pelican Blog </a></h1>
+                <nav><ul>
+                    <li><a href="/category/about.html">About</a></li>
+                    <li><a href="/category/dev.html">dev</a></li>
+                    <li class="active"><a href="/category/opencv.html">openCV</a></li>
+                    <li><a href="/category/pages.html">pages</a></li>
+                    <li><a href="/category/python.html">Python</a></li>
+                    <li><a href="/category/stuff.html">stuff</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/opencv2-information-isolation-part-1.html" rel="bookmark"
+           title="Permalink to OpenCV2 information isolation part 1">OpenCV2 information isolation part 1</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-12-07T20:00:00+00:00">
+                Published: Thu 07 December 2017
+        </abbr>
+
+<p>In <a href="/category/opencv.html">openCV</a>.</p>
+
+</footer><!-- /.post-info -->      <h4>Isolating image info using OpenCV2</h4>
+<p>A colleague of mine was asking if it was possible to isolate certain colors of 
+dyed mouse skeletons.</p>
+<p>Luckily for me, I had written a helper library to do a similar task in another 
+application. With a little modification, I was able to use this tool to save 
+lots of time.</p>
+<h5>Script setup and file import</h5>
+<div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Name: mouse_skeleton.py</span>
+<span class="sd">By: ADG Dec 07, 2017</span>
+<span class="sd">Description: Quick script to reduce/isolate information in a dyed mouse skeleton</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">lab_colors</span>
+<span class="kn">import</span> <span class="nn">sim_image_utils</span> <span class="kn">as</span> <span class="nn">siu</span>
+
+<span class="n">img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s2">&quot;mouse_images/mouse_skeleton.jpg&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The source x-ray image I am using is pretty low quality, and has JPEG artifacts 
+all over.  However, it is still a good candidate for color isolation as the 
+lighting provides clear separation between color zones.
+<a href="https://news.utexas.edu/2013/09/30/science-visualized">(original image source)</a>
+<img alt="original image" src="https://image.ibb.co/iRs6aG/mouse_skeleton.jpg"></p>
+<h5>Removal of Unimportant Information</h5>
+<p>First thing I want to do is remove whatever useless information I can. The 
+white background does not provide any useful information.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Lets remove the white information from the image</span>
+<span class="c1"># The JPG artifacts are really messing with the image and it shows here</span>
+<span class="n">white_mask</span> <span class="o">=</span> <span class="n">siu</span><span class="o">.</span><span class="n">get_color_mask</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">lab_colors</span><span class="o">.</span><span class="n">MOUSE_COLORS</span><span class="p">[</span><span class="s1">&#39;wht&#39;</span><span class="p">])</span>
+<span class="n">not_white_mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">white_mask</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;mouse_images/reduce_white.jpg&quot;</span><span class="p">,</span><span class="n">not_white_mask</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="Removal of white" src="https://image.ibb.co/no6M9b/reduce_white.jpg"></p>
+<p>After this step, the JPEG artifacting is very apparent, one of the first things 
+that JPEG compression does is reduction of information in the whites and blacks.</p>
+<p>Luckily for us, there is an outline of yellowish membrane (probably muscle and 
+skin, I'm certainly no biological expert) surrounding the skeleton. This color
+was far enough away from white that the JPEG compression algorithm didn't group
+all these pixels into blocks.</p>
+<div class="highlight"><pre><span></span><span class="c1"># If you look closely near the bones, there is a membrane of yellowish color</span>
+<span class="c1"># This is probably muscle/skin, lets see if we can isolate and remove it</span>
+<span class="n">membrane_mask</span> <span class="o">=</span> <span class="n">siu</span><span class="o">.</span><span class="n">get_color_mask</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">lab_colors</span><span class="o">.</span><span class="n">MOUSE_COLORS</span><span class="p">[</span><span class="s1">&#39;membrane&#39;</span><span class="p">])</span>
+<span class="n">not_membrane_mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_not</span><span class="p">(</span><span class="n">membrane_mask</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;mouse_images/reduce_membrane.jpg&quot;</span><span class="p">,</span> <span class="n">not_membrane_mask</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="Removal of membrane" src="https://image.ibb.co/mtFg9b/reduce_membrane.jpg"></p>
+<p>That made the difference!  This could be tweaked for better accuracy, but
+without a clear goal in mind, it's pointless to lament over detail.</p>
+<p>Let's take a look at the original image after masking out the unimportant data.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Lets just look at the information from the dyed portions of skeleton</span>
+<span class="n">isolated_skeleton_img</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">img</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">not_membrane_mask</span><span class="p">)</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;mouse_images/iso_skeleton.jpg&quot;</span><span class="p">,</span> <span class="n">isolated_skeleton_img</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="Isolated Skeleton" src="https://image.ibb.co/nOWM9b/iso_skeleton.jpg"></p>
+<p>Thats pretty clear. Now we can begin working on isolating the primary colors.</p>
+<h5>Color Isolation</h5>
+<p>The primary colors in this image are magenta, and cyan. It
+should be pretty easy to isolate them.</p>
+<div class="highlight"><pre><span></span><span class="c1">#cycle through the color boundaries (cb&#39;s)</span>
+<span class="k">for</span> <span class="n">cb</span> <span class="ow">in</span> <span class="n">lab_colors</span><span class="o">.</span><span class="n">MOUSE_COLORS</span><span class="p">:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">siu</span><span class="o">.</span><span class="n">get_color_mask</span><span class="p">(</span><span class="n">isolated_skeleton_img</span><span class="p">,</span> <span class="n">lab_colors</span><span class="o">.</span><span class="n">MOUSE_COLORS</span><span class="p">[</span><span class="n">cb</span><span class="p">])</span>
+    <span class="n">color_img</span> <span class="o">=</span> <span class="n">siu</span><span class="o">.</span><span class="n">get_colored_img</span><span class="p">(</span><span class="n">isolated_skeleton_img</span><span class="p">,</span>
+                                    <span class="n">color_boundary</span><span class="o">=</span><span class="n">lab_colors</span><span class="o">.</span><span class="n">MOUSE_COLORS</span><span class="p">[</span><span class="n">cb</span><span class="p">],</span>
+                                    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&quot;mouse_images/{}_img.jpg&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cb</span><span class="p">),</span> <span class="n">color_img</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="Cyan" src="https://image.ibb.co/iOYCFG/cyan_img.jpg">
+<img alt="Magenta" src="https://image.ibb.co/c71chw/mgnt_img.jpg"></p>
+<p>That's all I got for tonight. A brief look at the source image in comparison to
+the color-isolated images shows that my color regions are too broad and should 
+probably be defined into more precise categories other than just <em>Cyan</em> and <em>Magenta</em>.</p>
+<h5>Up Next</h5>
+<p>Next time I will attempt to do some other cool stuff with this image:</p>
+<ul>
+<li>Identify centers of mass and coordinates of each region</li>
+<li>Determine percentages of each color by area </li>
+<li>Mark regions with certain color characteristics</li>
+</ul>
+<p>I'll do my best to address these things in part 2.</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
