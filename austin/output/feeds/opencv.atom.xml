@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Austin Green - openCV</title><link href="/" rel="alternate"></link><link href="/feeds/opencv.atom.xml" rel="self"></link><id>/</id><updated>2017-12-07T20:00:00-06:00</updated><entry><title>OpenCV2 information isolation part 1</title><link href="/opencv2-information-isolation-part-1.html" rel="alternate"></link><published>2017-12-07T20:00:00-06:00</published><updated>2017-12-07T20:00:00-06:00</updated><author><name>Austin Green</name></author><id>tag:None,2017-12-07:/opencv2-information-isolation-part-1.html</id><summary type="html">&lt;h4&gt;Isolating image info using OpenCV2&lt;/h4&gt;
+&lt;p&gt;A colleague of mine was asking if it was possible to isolate certain colors of 
+dyed mouse skeletons.&lt;/p&gt;
+&lt;p&gt;Luckily for me, I had written a helper library to do a similar task in another 
+application. With a little modification, I was able to use this …&lt;/p&gt;</summary><content type="html">&lt;h4&gt;Isolating image info using OpenCV2&lt;/h4&gt;
+&lt;p&gt;A colleague of mine was asking if it was possible to isolate certain colors of 
+dyed mouse skeletons.&lt;/p&gt;
+&lt;p&gt;Luckily for me, I had written a helper library to do a similar task in another 
+application. With a little modification, I was able to use this tool to save 
+lots of time.&lt;/p&gt;
+&lt;h5&gt;Script setup and file import&lt;/h5&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+&lt;span class="sd"&gt;Name: mouse_skeleton.py&lt;/span&gt;
+&lt;span class="sd"&gt;By: ADG Dec 07, 2017&lt;/span&gt;
+&lt;span class="sd"&gt;Description: Quick script to reduce/isolate information in a dyed mouse skeleton&lt;/span&gt;
+&lt;span class="sd"&gt;&amp;#39;&amp;#39;&amp;#39;&lt;/span&gt;
+
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cv2&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;lab_colors&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sim_image_utils&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;siu&lt;/span&gt;
+
+&lt;span class="n"&gt;img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouse_images/mouse_skeleton.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The source x-ray image I am using is pretty low quality, and has JPEG artifacts 
+all over.  However, it is still a good candidate for color isolation as the 
+lighting provides clear separation between color zones.
+&lt;a href="https://news.utexas.edu/2013/09/30/science-visualized"&gt;(original image source)&lt;/a&gt;
+&lt;img alt="original image" src="https://image.ibb.co/iRs6aG/mouse_skeleton.jpg"&gt;&lt;/p&gt;
+&lt;h5&gt;Removal of Unimportant Information&lt;/h5&gt;
+&lt;p&gt;First thing I want to do is remove whatever useless information I can. The 
+white background does not provide any useful information.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Lets remove the white information from the image&lt;/span&gt;
+&lt;span class="c1"&gt;# The JPG artifacts are really messing with the image and it shows here&lt;/span&gt;
+&lt;span class="n"&gt;white_mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;siu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_color_mask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lab_colors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MOUSE_COLORS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;wht&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;not_white_mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bitwise_not&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;white_mask&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouse_images/reduce_white.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;not_white_mask&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Removal of white" src="https://image.ibb.co/no6M9b/reduce_white.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;After this step, the JPEG artifacting is very apparent, one of the first things 
+that JPEG compression does is reduction of information in the whites and blacks.&lt;/p&gt;
+&lt;p&gt;Luckily for us, there is an outline of yellowish membrane (probably muscle and 
+skin, I'm certainly no biological expert) surrounding the skeleton. This color
+was far enough away from white that the JPEG compression algorithm didn't group
+all these pixels into blocks.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# If you look closely near the bones, there is a membrane of yellowish color&lt;/span&gt;
+&lt;span class="c1"&gt;# This is probably muscle/skin, lets see if we can isolate and remove it&lt;/span&gt;
+&lt;span class="n"&gt;membrane_mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;siu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_color_mask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lab_colors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MOUSE_COLORS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;membrane&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;not_membrane_mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bitwise_not&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;membrane_mask&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouse_images/reduce_membrane.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;not_membrane_mask&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Removal of membrane" src="https://image.ibb.co/mtFg9b/reduce_membrane.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;That made the difference!  This could be tweaked for better accuracy, but
+without a clear goal in mind, it's pointless to lament over detail.&lt;/p&gt;
+&lt;p&gt;Let's take a look at the original image after masking out the unimportant data.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Lets just look at the information from the dyed portions of skeleton&lt;/span&gt;
+&lt;span class="n"&gt;isolated_skeleton_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bitwise_and&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;not_membrane_mask&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouse_images/iso_skeleton.jpg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;isolated_skeleton_img&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Isolated Skeleton" src="https://image.ibb.co/nOWM9b/iso_skeleton.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;Thats pretty clear. Now we can begin working on isolating the primary colors.&lt;/p&gt;
+&lt;h5&gt;Color Isolation&lt;/h5&gt;
+&lt;p&gt;The primary colors in this image are magenta, and cyan. It
+should be pretty easy to isolate them.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;#cycle through the color boundaries (cb&amp;#39;s)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;cb&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;lab_colors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MOUSE_COLORS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;siu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_color_mask&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isolated_skeleton_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lab_colors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MOUSE_COLORS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cb&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+    &lt;span class="n"&gt;color_img&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;siu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_colored_img&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;isolated_skeleton_img&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                                    &lt;span class="n"&gt;color_boundary&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;lab_colors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MOUSE_COLORS&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cb&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                                    &lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;cv2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;imwrite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;mouse_images/{}_img.jpg&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cb&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;color_img&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="Cyan" src="https://image.ibb.co/iOYCFG/cyan_img.jpg"&gt;
+&lt;img alt="Magenta" src="https://image.ibb.co/c71chw/mgnt_img.jpg"&gt;&lt;/p&gt;
+&lt;p&gt;That's all I got for tonight. A brief look at the source image in comparison to
+the color-isolated images shows that my color regions are too broad and should 
+probably be defined into more precise categories other than just &lt;em&gt;Cyan&lt;/em&gt; and &lt;em&gt;Magenta&lt;/em&gt;.&lt;/p&gt;
+&lt;h5&gt;Up Next&lt;/h5&gt;
+&lt;p&gt;Next time I will attempt to do some other cool stuff with this image:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Identify centers of mass and coordinates of each region&lt;/li&gt;
+&lt;li&gt;Determine percentages of each color by area &lt;/li&gt;
+&lt;li&gt;Mark regions with certain color characteristics&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I'll do my best to address these things in part 2.&lt;/p&gt;</content></entry></feed>
