@@ -1,7 +1,7 @@
 Title: Getting Started with Paritcle Electron
 Date: 2018-05-07 20:00
 Category: openCV
-Status: draft
+Status: published
 
 Currently watching: Cavs vs Raptors Game 4, 2018 NBA Playoffs
 
