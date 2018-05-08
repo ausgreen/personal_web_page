@@ -1,4 +1,4 @@
-Title: Getting Started with Paritcle Electron
+Title: Getting Started with Particle Electron
 Date: 2018-05-07 20:00
 Category: openCV
 Status: published
@@ -85,6 +85,12 @@ To upload the binary file use the following command:
     $ particle flash --usb [name_of_file].bin
     
 The firmware is now on your Electron.  Congrats!
+
+##### Useful Links
+
+- [Particle Docs](https://docs.particle.io/guide/getting-started/intro/electron/)
+- [Electron Firmware Reference](https://docs.particle.io/reference/firmware/electron/)
+- [Particle Console](https://console.particle.io/)
 
 
 
