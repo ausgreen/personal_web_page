@@ -91,6 +91,7 @@ The firmware is now on your Electron.  Congrats!
 - [Particle Docs](https://docs.particle.io/guide/getting-started/intro/electron/)
 - [Electron Firmware Reference](https://docs.particle.io/reference/firmware/electron/)
 - [Particle Console](https://console.particle.io/)
+- [Particle Build](https://build.particle.io/)
 
 
 

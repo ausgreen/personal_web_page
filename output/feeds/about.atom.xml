@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog - About</title><link href="/" rel="alternate"></link><link href="/feeds/about.atom.xml" rel="self"></link><id>/</id><updated>2017-11-03T10:00:00+00:00</updated><entry><title>About</title><link href="/about.html" rel="alternate"></link><published>2017-11-03T10:00:00+00:00</published><updated>2017-11-03T10:00:00+00:00</updated><author><name></name></author><id>tag:None,2017-11-03:/about.html</id><summary type="html">&lt;h4&gt;School&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog - About</title><link href="/" rel="alternate"></link><link href="/feeds/about.atom.xml" rel="self"></link><id>/</id><updated>2017-11-03T10:00:00+00:00</updated><entry><title>About</title><link href="/about.html" rel="alternate"></link><published>2017-11-03T10:00:00+00:00</published><updated>2017-11-03T10:00:00+00:00</updated><author><name></name></author><id>tag:None,2017-11-03:/about.html</id><summary type="html">&lt;p&gt;Austin Green&lt;/p&gt;
+&lt;p&gt;Birmingham, Alabama Area&lt;/p&gt;
+&lt;h3&gt;School&lt;/h3&gt;
 &lt;p&gt;Austin studied Electrical Engineering at the University of Alabama at Birmingham.
 After learning on the job for four years, he decided that it was time to go back
 to learning in a structured environment.  Austin will begin work on his Master of
-Science in Analytics at Georgia Tech in …&lt;/p&gt;</summary><content type="html">&lt;h4&gt;School&lt;/h4&gt;
+Science in …&lt;/p&gt;</summary><content type="html">&lt;p&gt;Austin Green&lt;/p&gt;
+&lt;p&gt;Birmingham, Alabama Area&lt;/p&gt;
+&lt;h3&gt;School&lt;/h3&gt;
 &lt;p&gt;Austin studied Electrical Engineering at the University of Alabama at Birmingham.
 After learning on the job for four years, he decided that it was time to go back
 to learning in a structured environment.  Austin will begin work on his Master of
 Science in Analytics at Georgia Tech in Fall 2018.&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;Note to self: time to stop with the 3rd person narrative&lt;/em&gt;&lt;/p&gt;
-&lt;h4&gt;What Am I Currently Working On?&lt;/h4&gt;
-&lt;p&gt;I have a few of courses that I am taking to maximise what I can get out of my 
-Masters program.&lt;/p&gt;
-&lt;h6&gt;&lt;a href="https://www.coursera.org/learn/integration-calculus"&gt;Calculus Single Variable Part 3 – Coursera – &lt;em&gt;University of Pennsylvania&lt;/em&gt;&lt;/a&gt;&lt;/h6&gt;
-&lt;p&gt;I already took the calculus series through differential equations, but after 
-four years of only applying concepts of calculus I decided it was time for some
+&lt;h3&gt;What courses are you taking to prep for your MSA?&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1. &lt;a href="https://www.coursera.org/learn/integration-calculus"&gt;Calculus Single Variable Part 3 – Coursera – &lt;em&gt;University of Pennsylvania&lt;/em&gt;&lt;/a&gt;&lt;/strong&gt;
+Recommended Calculus resources:&lt;/p&gt;
+&lt;p&gt;• &lt;a href="http://calculus.seas.upenn.edu/"&gt;Course Reading&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• &lt;a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr"&gt;3Blue1Brown Essence of Calculus&lt;/a&gt;
+I already took the calculus series through differential equations, but after 
+four years of only applying concepts of calculus, it was time for some
 remediation.  UPenn has put together this very rigorous and fast paced course
 which takes a unique approach to differentiation and integration by first understanding
-Series.  I would really recommend this MOOC to anyone who needs a calculus refresher&lt;/p&gt;
-&lt;p&gt;Calculus links:&lt;/p&gt;
-&lt;p&gt;• &lt;a href="http://calculus.seas.upenn.edu/"&gt;Course Reading&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;• &lt;a href="https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr"&gt;3Blue1Brown Essence of Calculus&lt;/a&gt;&lt;/p&gt;
+Series.  Take this course if you need a calculus refresher.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. &lt;a href="https://courses.edx.org/courses/course-v1:UTAustinX+UT.5.05x+1T2018/course/"&gt;LAFF: Linear Algebra - Foundations to Frontiers – EdX – UTAustinX&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3. &lt;a href="https://courses.edx.org/courses/course-v1:UTAustinX+UT.7.11x+2T2017/course/"&gt;Foundations of Data Analysis - Part 1 – EdX – UTAustinX&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h4&gt;Completed Courses&lt;/h4&gt;
-&lt;p&gt;&lt;a href="https://www.coursera.org/learn/single-variable-calculus"&gt;&lt;strong&gt;Calculus Single Variable Part 1 – Coursera – *University of Pennsylvania&lt;/strong&gt;*&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://www.coursera.org/learn/differentiation-calculus"&gt;&lt;strong&gt;Calculus Single Variable Part 2 – Coursera – *University of Pennsylvania&lt;/strong&gt;*&lt;/a&gt;&lt;/p&gt;</content></entry></feed>
+&lt;p&gt;&lt;a href="https://www.coursera.org/learn/single-variable-calculus"&gt;Calculus Single Variable Part 1 – Coursera – University of Pennsylvania&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://www.coursera.org/learn/differentiation-calculus"&gt;Calculus Single Variable Part 2 – Coursera – University of Pennsylvania&lt;/a&gt;&lt;/p&gt;
+&lt;h3&gt;What books are you studying right now?&lt;/h3&gt;
+&lt;p&gt;• &lt;a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf"&gt;Elements of Statistical Learning II&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;• &lt;a href="https://www.google.com/search?q=+ISBN-13%20978-0393933819"&gt;The Norton Field Guide to Writing&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;In reference to Steve Jobs, Bill Gates, etc., one of my coworkers asked me the 
+question: "Why are famous and successful people always talking about the books
+they have read?"&lt;/p&gt;
+&lt;p&gt;The reason seemed pretty obvious in my mind – successful and talented people are 
+good at learning from and relying on others. A &lt;em&gt;good&lt;/em&gt; book provides an intimate and
+thorough conversation with someone who is an expert.  So, I better take advantage
+and read a little bit.&lt;/p&gt;</content></entry></feed>
